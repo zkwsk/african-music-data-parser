@@ -235,9 +235,9 @@ const arrEquals = (array1, array2) => {
 const arrEmpty = arr => arr && arr.length === 0;
 
 const extractBetweenBrackets = (string) => {
-  let match = string.match(/(?<=\[).+?(?=\])/);
+  let match = string.match(/\[(.*?)\]/); 
   if (match) {
-    return match[0]
+    return match[1]
   } else {
     return string.replace('[', '');
   }
