@@ -1,4 +1,5 @@
 const config = require('../config.json');
+const languageConfig = require('../languages.json');
 const fs = require('fs');
 
 let data = require(`../data/${config.sourceFile}`);
@@ -178,10 +179,10 @@ const cleanFieldPerformer = (field) => {
  * @param {string} field 
  */
 const extractLanguages = (field) => {
-  return Object.keys(config.languageTranslations).reduce((result, language) => {
+  return Object.keys(languageConfig).reduce((result, language) => {
     if (field.toLowerCase().indexOf(language.toLowerCase()) !== -1) {
       // Return the translated string
-      result.push(config.languageTranslations[language]);
+      result.push(languageConfig[language]);
     }
     return result;
   }, [])
@@ -252,4 +253,3 @@ output = output.filter(record => !arrEquals(record.tracks.side_a, record.tracks.
 //output = output.slice(0, 10);
 
 console.log(JSON.stringify(output, null, 2));
-//console.log(`Length: ${output.length}`);
